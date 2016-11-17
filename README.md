@@ -1,2 +1,2 @@
-# StockTwits-Recommender
-Metis Project #5 - Sentiment analysis of stock-related tweets for market prediction
+# Generative Adversarial Network
+Metis Project #5 - Deep convolutional generative adversarial network for image synthesis
