@@ -32,6 +32,9 @@ https://github.com/rajathkumarmp/DCGAN
 dcgan-autoencoder  
 https://github.com/mikesj-public/dcgan-autoencoder
 
+Image-to-image translation using conditional adversarial nets  
+https://github.com/phillipi/pix2pix
+
 __Websites__
 
 Image Completion with Deep Learning in TensorFlow  
