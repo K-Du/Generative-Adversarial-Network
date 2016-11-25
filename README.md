@@ -5,6 +5,9 @@ Resources:
 
 __Github__
 
+Deep Convolutional Generative Adversarial Network (DCGAN) Tutorial  
+https://gist.github.com/awjuliani/8ebf356d03ffee139659807be7fa2611#file-dcgan-ipynb
+
 Deep Convolutional Generative Adversarial Networks   
 https://github.com/Newmu/dcgan_code
 
@@ -35,6 +38,9 @@ https://github.com/mikesj-public/dcgan-autoencoder
 Image-to-image translation using conditional adversarial nets  
 https://github.com/phillipi/pix2pix
 
+DCGAN implementation by TensorFlow  
+https://github.com/sugyan/tf-dcgan
+
 __Websites__
 
 Image Completion with Deep Learning in TensorFlow  
@@ -49,6 +55,12 @@ https://swarbrickjones.wordpress.com/2016/01/24/generative-adversarial-autoencod
 Enhancing images using Deep Convolutional Generative Adversarial Networks (DCGANs)  
 https://swarbrickjones.wordpress.com/2016/01/13/enhancing-images-using-deep-convolutional-generative-adversarial-networks-dcgans/
 
+OpenAI  
+https://openai.com/blog/generative-models/
 
+An introduction to Generative Adversarial Networks (with code in TensorFlow)  
+http://blog.aylien.com/introduction-generative-adversarial-networks-code-tensorflow/
 
+Generative Adversarial Networks Explained with a Classic Spongebob Squarepants Episode  
+https://medium.com/@awjuliani/generative-adversarial-networks-explained-with-a-classic-spongebob-squarepants-episode-54deab2fce39#.916cab1a0
 
