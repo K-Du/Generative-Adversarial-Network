@@ -41,6 +41,7 @@ https://github.com/phillipi/pix2pix
 DCGAN implementation by TensorFlow  
 https://github.com/sugyan/tf-dcgan
 
+
 __Websites__
 
 Image Completion with Deep Learning in TensorFlow  
@@ -66,3 +67,6 @@ https://medium.com/@awjuliani/generative-adversarial-networks-explained-with-a-c
 
 Generating Videos with Scene Dynamics  
 http://web.mit.edu/vondrick/tinyvideo/
+
+LIME - Local Interpretable Model-Agnostic Explanations  
+https://homes.cs.washington.edu/~marcotcr/blog/lime/
