@@ -64,3 +64,5 @@ http://blog.aylien.com/introduction-generative-adversarial-networks-code-tensorf
 Generative Adversarial Networks Explained with a Classic Spongebob Squarepants Episode  
 https://medium.com/@awjuliani/generative-adversarial-networks-explained-with-a-classic-spongebob-squarepants-episode-54deab2fce39#.916cab1a0
 
+Generating Videos with Scene Dynamics  
+http://web.mit.edu/vondrick/tinyvideo/
