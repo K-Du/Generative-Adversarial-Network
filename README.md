@@ -6,7 +6,7 @@ References:
 __Github__
 
 Deep Convolutional Generative Adversarial Network (DCGAN) Tutorial  
-https://gist.github.com/awjuliani/8ebf356d03ffee139659807be7fa2611#file-dcgan-ipynb
+https://github.com/awjuliani/TF-Tutorials/blob/master/DCGAN.ipynb
 
 Deep Convolutional Generative Adversarial Networks   
 https://github.com/Newmu/dcgan_code
