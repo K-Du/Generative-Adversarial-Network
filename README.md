@@ -20,6 +20,9 @@ https://github.com/junyanz/iGAN
 Generative Adversarial Text-to-Image Synthesis http://arxiv.org/abs/1605.05396  
 https://github.com/reedscot/icml2016
 
+Generating Videos with Scene Dynamics
+https://github.com/cvondrick/videogan
+
 Deep Convolutional Generative Adversarial Networks, with some small improvements.  
 https://github.com/fzliu/tf-dcgan
 
