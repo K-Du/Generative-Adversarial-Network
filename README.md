@@ -38,11 +38,15 @@ https://github.com/rajathkumarmp/DCGAN
 dcgan-autoencoder  
 https://github.com/mikesj-public/dcgan-autoencoder
 
+image generation via GANs  
+https://github.com/kvfrans/generative-adversial
+
 Image-to-image translation using conditional adversarial nets  
 https://github.com/phillipi/pix2pix
 
 DCGAN implementation by TensorFlow  
 https://github.com/sugyan/tf-dcgan
+
 
 
 __Websites__
@@ -73,3 +77,9 @@ http://web.mit.edu/vondrick/tinyvideo/
 
 LIME - Local Interpretable Model-Agnostic Explanations  
 https://homes.cs.washington.edu/~marcotcr/blog/lime/
+
+Using DCGANs to generate and cluster images of flowers   
+http://kenkihara.com/projects/GAN.html
+
+Generative Adversial Networks Explained. 
+http://kvfrans.com/generative-adversial-networks-explained/
