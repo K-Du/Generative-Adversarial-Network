@@ -81,5 +81,5 @@ https://homes.cs.washington.edu/~marcotcr/blog/lime/
 Using DCGANs to generate and cluster images of flowers   
 http://kenkihara.com/projects/GAN.html
 
-Generative Adversial Networks Explained. 
+Generative Adversial Networks Explained.  
 http://kvfrans.com/generative-adversial-networks-explained/
