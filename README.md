@@ -47,6 +47,9 @@ https://github.com/phillipi/pix2pix
 DCGAN implementation by TensorFlow  
 https://github.com/sugyan/tf-dcgan
 
+Using DCGANs to train a neural net to generate faces, then do linear operations / combinations / manipulations of faces. Uses Tensorflow.  
+https://github.com/frrmack/dcgan-facemath-tensorflow
+ 
 
 
 __Websites__
