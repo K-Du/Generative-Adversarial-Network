@@ -50,6 +50,8 @@ https://github.com/sugyan/tf-dcgan
 Using DCGANs to train a neural net to generate faces, then do linear operations / combinations / manipulations of faces. Uses Tensorflow.  
 https://github.com/frrmack/dcgan-facemath-tensorflow
  
+Text to image synthesis using thought vectors  
+https://github.com/paarthneekhara/text-to-image
 
 
 __Websites__
