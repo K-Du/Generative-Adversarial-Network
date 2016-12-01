@@ -91,3 +91,6 @@ http://kenkihara.com/projects/GAN.html
 
 Generative Adversial Networks Explained.  
 http://kvfrans.com/generative-adversial-networks-explained/
+
+Plug & Play Generative Networks: Conditional Iterative Generation of Images in Latent Space   
+http://www.evolvingai.org/ppgn
