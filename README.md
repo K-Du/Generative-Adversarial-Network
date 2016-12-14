@@ -3,7 +3,7 @@ Metis Project #5 - Deep convolutional generative adversarial network for image e
 
 References:
 
-__Github__
+__Github__ 
  
 Deep Convolutional Generative Adversarial Network (DCGAN) Tutorial  
 https://github.com/awjuliani/TF-Tutorials/blob/master/DCGAN.ipynb
