@@ -35,8 +35,8 @@ tf.app.flags.DEFINE_integer('downscale', 4,
 tf.app.flags.DEFINE_float('epsilon', 1e-8,
                           "Fuzz term to avoid numerical instability")
 
-tf.app.flags.DEFINE_bool('flowers', False,
-                         "Set True for flowers imageset or other larger images.")
+tf.app.flags.DEFINE_bool('large_image', False,
+                         "Set True for larger images that are problematic when run normally.")
 
 tf.app.flags.DEFINE_string('run', 'train',
                             "Which operation to run. [demo|train]")
