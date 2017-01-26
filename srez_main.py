@@ -115,7 +115,7 @@ def prepare_dirs(delete_train_dir=False):
 
     return filenames
 
-def prepare_test_dirs():
+def prepare_test_dirs(): 
     # Create checkpoint dir (do not delete anything)
     if not tf.gfile.Exists(FLAGS.checkpoint_dir):
         tf.gfile.MakeDirs(FLAGS.checkpoint_dir)
