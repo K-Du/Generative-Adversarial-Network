@@ -4,9 +4,9 @@ Metis Project #5 - Deep convolutional generative adversarial networks for image 
 ![mnist-digits](mnist-digits.png)
 
 For a general overview of GANs, see [this](Generative%20Adversarial%20Networks.pdf) presentation.  
-Please see [this](https://github.com/K-Du/Generative-Adversarial-Network/blob/master/Image%20Enhancement%20Using%20Deep%20Learning.pdf) presentation for a summary of this project.
+[This](https://github.com/K-Du/Generative-Adversarial-Network/blob/master/Image%20Enhancement%20Using%20Deep%20Learning.pdf) presentation gives a brief summary of this project.
 
-Based on David Garcia's [code](https://github.com/david-gpu/srez) for specifically enhancing celebrity photos.
+The GAN is based on David Garcia's [code](https://github.com/david-gpu/srez) for specifically enhancing celebrity photos.
 I added some extra features and enabled it to be used for any imageset (such as MNIST digits).
 
 Instructions:
