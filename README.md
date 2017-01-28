@@ -1,7 +1,7 @@
 # DCGANs for Image Enhancement
 Metis Project #5 - Deep convolutional generative adversarial networks for image enhancement
 
-<img src="mnist-digits.png" alt="mnist-digits" style="height: 2000;"/>
+<img src="mnist.png" alt="mnis"/>
 
 For a general overview of GANs, see [this](Generative%20Adversarial%20Networks.pdf) presentation.  
 Please see [this](https://github.com/K-Du/Generative-Adversarial-Network/blob/master/Image%20Enhancement%20Using%20Deep%20Learning.pdf) presentation for a summary of this project.
