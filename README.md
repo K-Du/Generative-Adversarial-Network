@@ -1,5 +1,5 @@
 # DCGANs for Image Enhancement
-Metis Project #5 - Deep convolutional generative adversarial networks for image enhancement
+Metis Project #5 - Deep convolutional generative adversarial networks for image enhancement  
 
 ![mnist-digits](mnist-digits.png)
 
@@ -9,7 +9,17 @@ For a general overview of GANs, see [this](Generative%20Adversarial%20Networks.p
 The GAN is based on David Garcia's [code](https://github.com/david-gpu/srez) for specifically enhancing celebrity photos.
 I added some extra features and enabled it to be used for any imageset (such as MNIST digits).
 
-Instructions:
+(In Progress: Updating for Tensorflow 1.0)
+
+### Dependencies
+Python
+Tensorflow 1.0
+scipy
+numpy
+moviepy (optional for creating demo)
+
+
+### Instructions:
 - Download the five .py files. 
 - Create a folder called "dataset" and place all of the images in it. Images must be in jpeg format. 
 - From a console, run `python srez_main.py` to start training. Results will be automatically stored in a folder called "train", checkpoints will be automatically stored in a folder called "checkpoint".
