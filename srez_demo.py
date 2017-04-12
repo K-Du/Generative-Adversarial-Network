@@ -1,4 +1,7 @@
-import moviepy.editor as mpe
+try:
+    import moviepy.editor as mpe
+except:
+    pass
 import numpy as np
 import numpy.random
 import os.path

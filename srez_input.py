@@ -33,13 +33,7 @@ def setup_inputs(sess, filenames, image_size=None, capacity_factor=3):
         image = tf.image.resize_nearest_neighbor(image, (crop_size_plus, crop_size_plus))
         image = tf.reshape(image, (crop_size_plus, crop_size_plus, channels))
     
-    
-    elif FLAGS.flowers:
-        image = tf.reshape(image, (1, tf.shape(image)[0], tf.shape(image)[1], channels))
-        image = tf.image.resize_area(image, [crop_size_plus, crop_size_plus])
-        image = tf.reshape(image, (crop_size_plus, crop_size_plus, channels))
-
-    else:   
+    else:
         image = tf.image.crop_to_bounding_box(image, off_y, off_x, crop_size_plus, crop_size_plus)
 
     image = tf.random_crop(image, [crop_size, crop_size, channels])
