@@ -12,14 +12,14 @@ I added some extra features and enabled it to be used for any imageset (such as 
 (In Progress: Updating for Tensorflow 1.0)
 
 ### Dependencies
-Python
-Tensorflow 1.0
-scipy
-numpy
+Python  
+Tensorflow 1.0  
+scipy  
+numpy  
 moviepy (optional for creating demo)
 
 
-### Instructions:
+### Instructions
 - Download the five .py files. 
 - Create a folder called "dataset" and place all of the images in it. Images must be in jpeg format. 
 - From a console, run `python srez_main.py` to start training. Results will be automatically stored in a folder called "train", checkpoints will be automatically stored in a folder called "checkpoint".
