@@ -9,7 +9,11 @@ For a general overview of GANs, see [this](Generative%20Adversarial%20Networks.p
 The GAN is based on David Garcia's [code](https://github.com/david-gpu/srez) for specifically enhancing celebrity photos.
 I added some extra features and enabled it to be used for any imageset (such as MNIST digits).
 
-(Recently updated to support Tensorflow 1.0)
+### Updates
+- Now supports Tensorflow 1.0
+- Added tanh layer for last generator layer
+- Added a flag to allow different learning rates for generator and discriminator
+- Training output now displays both L1 generator loss and cross-entropy generator loss
 
 ### Dependencies
 Python  
