@@ -24,12 +24,13 @@ moviepy (optional for creating demo)
 - Create a folder called "dataset" and place all of the images in it. Images must be in jpeg format. 
 - From a console, run `python srez_main.py` to start training. Results will be automatically stored in a folder called "train", checkpoints will be automatically stored in a folder called "checkpoint".
 - By default, the batch size is set to 16 and training will stop after 20 minutes. These and many more settings (see srez_main.py) can be adjusted by appending flags when running the python script.  
-For example: `python srez_main.py --batch_size 32 --train_time 60`
+For example: `python srez_main.py --batch_size 32 --train_time 60`  
 
+### Troubleshooting
+- When using this on CPU (not recommended), training time must be set higher or no results will be saved.
+- Depending on image size, srez_input.py crop_size and image_size variables might need to be edited. Batch size should be lowered if memory is an issue with larger images.
+- GANs are very difficult to train and it is common to see divergence where the discriminator loss goes to zero while the generator loss increases. Some excellent tips and tricks can be found here: https://github.com/soumith/ganhacks
 
-To-do:
-- Enable a pure black-and-white mode to increase training speed
-- Automatically detect objects in a large image and crop out the background
 
 [References](References.md)
 
