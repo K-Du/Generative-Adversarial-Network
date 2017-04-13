@@ -28,8 +28,8 @@ For example: `python srez_main.py --batch_size 32 --train_time 60`
 
 ### Troubleshooting
 - When using this on CPU (not recommended), training time must be set higher or no results will be saved.
-- Depending on image size, srez_input.py crop_size and image_size variables might need to be edited. Batch size should be lowered if memory is an issue with larger images.
-- GANs are very difficult to train and it is common to see divergence where the discriminator loss goes to zero while the generator loss increases. Some excellent tips and tricks can be found here: https://github.com/soumith/ganhacks
+- Depending on image size, [srez_input.py](srez_input.py) crop_size and image_size variables might need to be edited. Batch size should be lowered if memory becomes an issue with larger images.
+- GANs are very difficult to train and it is common to see divergence where the discriminator loss goes to zero while the generator loss increases. Some excellent tips and tricks for training GANs can be found here: https://github.com/soumith/ganhacks
 
 
 [References](References.md)
