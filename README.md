@@ -9,7 +9,7 @@ For a general overview of GANs, see [this](Generative%20Adversarial%20Networks.p
 The GAN is based on David Garcia's [code](https://github.com/david-gpu/srez) for specifically enhancing celebrity photos.
 I added some extra features and enabled it to be used for any imageset (such as MNIST digits).
 
-(In Progress: Updating for Tensorflow 1.0)
+(Recently updated to support Tensorflow 1.0)
 
 ### Dependencies
 Python  
