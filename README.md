@@ -12,7 +12,7 @@ I added some extra features and enabled it to be used for any imageset (such as 
 ### Updates
 - Now supports Tensorflow 1.0
 - Added tanh layer for last generator layer
-- Added Dropout layers to discriminator
+- Added Dropout layers to generator
 - Changed ReLU layers to leaky ReLU by default
 - Added a flag to allow different learning rates for generator and discriminator
 - Training output now displays both L1 generator loss and cross-entropy generator loss
