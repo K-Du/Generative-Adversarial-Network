@@ -18,11 +18,11 @@ I added some extra features and enabled it to be used for any imageset (such as 
 - Training output now displays both L1 generator loss and cross-entropy generator loss
 
 ### Dependencies
-Python  
-Tensorflow 1.0  
-scipy  
-numpy  
-moviepy (optional for creating demo)
+- Python  
+- Tensorflow 1.0  
+- scipy  
+- numpy  
+- moviepy (optional for creating demo)
 
 
 ### Instructions
