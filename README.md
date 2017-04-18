@@ -14,7 +14,7 @@ I added some extra features and enabled it to be used for any imageset (such as 
 - Added tanh layer for last generator layer
 - Added Dropout layers to generator
 - Changed ReLU layers to leaky ReLU by default
-- Added a flag to allow different learning rates for generator and discriminator
+- Added flags to allow a different learning rate and Adam beta parameter for generator and discriminator
 - Training output now displays both L1 generator loss and cross-entropy generator loss
 
 ### Dependencies
