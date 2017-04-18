@@ -16,6 +16,8 @@ I added some extra features and enabled it to be used for any imageset (such as 
 - Changed ReLU layers to leaky ReLU by default
 - Added flags to allow a different learning rate and Adam beta parameter for generator and discriminator
 - Training output now displays both L1 generator loss and cross-entropy generator loss
+- Added option to adjust ratio of how heavily the discriminator loss depends on real loss and fake loss (default 1:1)
+- Added option to replace the L1 norm with L2 for calculating generator loss
 
 ### Dependencies
 - Python  
