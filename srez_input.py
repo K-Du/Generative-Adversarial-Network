@@ -22,13 +22,13 @@ def setup_inputs(sess, filenames, image_size=None, capacity_factor=3):
     image = tf.image.random_brightness(image, .05)
     image = tf.image.random_contrast(image, .95, 1.05)
 
-    wiggle = 8
-    off_x, off_y = 25-wiggle, 60-wiggle
-    crop_size = 128
+    wiggle = 0
+    off_x, off_y = 0-wiggle, 0-wiggle
+    crop_size = image_size
     crop_size_plus = crop_size + 2*wiggle
     
-    # Upsizes mnist images since they're too small
-    if FLAGS.mnist:
+    # Upsizes images if they are too small for the model
+    if FLAGS.upsize:
         image = tf.reshape(image, (1, 28, 28, channels))    
         image = tf.image.resize_nearest_neighbor(image, (crop_size_plus, crop_size_plus))
         image = tf.reshape(image, (crop_size_plus, crop_size_plus, channels))

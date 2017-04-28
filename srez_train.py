@@ -6,7 +6,7 @@ import time
 
 FLAGS = tf.app.flags.FLAGS
 
-def _summarize_progress(train_data, feature, label, gene_output, batch, suffix, max_samples=1):
+def _summarize_progress(train_data, feature, label, gene_output, batch, suffix, max_samples=8):
     td = train_data
 
     size = [label.shape[1], label.shape[2]]
@@ -18,8 +18,9 @@ def _summarize_progress(train_data, feature, label, gene_output, batch, suffix, 
     bicubic = tf.maximum(tf.minimum(bicubic, 1.0), 0.0)
 
     clipped = tf.maximum(tf.minimum(gene_output, 1.0), 0.0)
+    resized = tf.image.resize_nearest_neighbor(clipped, size)
 
-    image   = tf.concat([nearest, clipped, label], 2)
+    image   = tf.concat([nearest, resized, label], 2)
 
     image = image[0:max_samples,:,:,:]
     image = tf.concat([image[i,:,:,:] for i in range(max_samples)], 0)
@@ -74,22 +75,22 @@ def train_model(train_data):
 
     # Cache test features and labels (they are small)
     test_feature, test_label = td.sess.run([td.test_features, td.test_labels])
+    gene_loss = gene_ce_loss = disc_real_loss = disc_fake_loss = -1.234
 
     while not done:
         batch += 1
-        gene_loss = disc_real_loss = disc_fake_loss = -1.234
-
+        
         feed_dict = {td.learning_rate : lrval}
 
-        ops = [td.gene_minimize, td.disc_minimize, td.gene_loss, td.disc_real_loss, td.disc_fake_loss]
-        _, _, gene_loss, disc_real_loss, disc_fake_loss = td.sess.run(ops, feed_dict=feed_dict)
+        ops = [td.gene_minimize, td.disc_minimize, td.gene_loss, td.gene_l1_loss, td.gene_ce_loss, td.disc_real_loss, td.disc_fake_loss]
+        _, _, gene_loss, gene_l1_loss, gene_ce_loss, disc_real_loss, disc_fake_loss = td.sess.run(ops, feed_dict=feed_dict)
         
         if batch % 10 == 0:
             # Show we are alive
             elapsed = int(time.time() - start_time)/60
-            print('Progress[%3d%%], ETA[%4dm], Batch [%4d], G_Loss[%3.3f], D_Real_Loss[%3.3f], D_Fake_Loss[%3.3f]' %
+            print('Progress[%3d%%], ETA[%4dm], Batch [%4d], G_Loss[%3.3f], G_L1_Loss[%3.3f], G_CE_Loss[%3.3f], D_Real_Loss[%3.3f], D_Fake_Loss[%3.3f]' %
                   (int(100*elapsed/FLAGS.train_time), FLAGS.train_time - elapsed,
-                   batch, gene_loss, disc_real_loss, disc_fake_loss))
+                   batch, gene_loss, gene_l1_loss, gene_ce_loss, disc_real_loss, disc_fake_loss))
 
             # Finished?            
             current_progress = elapsed / FLAGS.train_time

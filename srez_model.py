@@ -128,6 +128,16 @@ class Model:
 
         self.outputs.append(out)
         return self
+    
+    def add_tanh(self):
+        """Adds a Tanh activation function to this model"""
+
+        with tf.variable_scope(self._get_layer_str()):
+            out = tf.tanh(self.get_output())
+        
+        self.outputs.append(out)
+        return self
+
 
     def add_lrelu(self, leak=.2):
         """Adds a leaky ReLU (LReLU) activation function to this model"""
@@ -212,11 +222,19 @@ class Model:
         # Residual block
         for _ in range(num_layers):
             self.add_batch_norm()
-            self.add_relu()
+            self.add_lrelu()
             self.add_conv2d(num_units, mapsize=mapsize, stride=1, stddev_factor=stddev_factor)
 
         self.add_sum(bypass)
 
+        return self
+
+    def add_dropout(self, keep_prob=0.5, seed=None):
+        """Adds a dropout layer"""
+        with tf.variable_scope(self._get_layer_str()):
+            out = tf.nn.dropout(self.get_output(), keep_prob=keep_prob, seed=seed)
+
+        self.outputs.append(out)
         return self
 
     def add_bottleneck_residual_block(self, num_units, mapsize=3, stride=1, transpose=False):
@@ -237,11 +255,11 @@ class Model:
 
         # Bottleneck residual block
         self.add_batch_norm()
-        self.add_relu()
+        self.add_lrelu()
         self.add_conv2d(num_units//4, mapsize=1,       stride=1,      stddev_factor=2.)
 
         self.add_batch_norm()
-        self.add_relu()
+        self.add_lrelu()
         if transpose:
             self.add_conv2d_transpose(num_units//4,
                                       mapsize=mapsize,
@@ -254,7 +272,7 @@ class Model:
                             stddev_factor=2.)
 
         self.add_batch_norm()
-        self.add_relu()
+        self.add_lrelu()
         self.add_conv2d(num_units,    mapsize=1,       stride=1,      stddev_factor=2.)
 
         self.add_sum(bypass)
@@ -336,16 +354,16 @@ def _discriminator_model(sess, features, disc_input):
 
         model.add_conv2d(nunits, mapsize=mapsize, stride=2, stddev_factor=stddev_factor)
         model.add_batch_norm()
-        model.add_relu()
+        model.add_lrelu()
 
     # Finalization a la "all convolutional net"
     model.add_conv2d(nunits, mapsize=mapsize, stride=1, stddev_factor=stddev_factor)
     model.add_batch_norm()
-    model.add_relu()
+    model.add_lrelu()
 
     model.add_conv2d(nunits, mapsize=1, stride=1, stddev_factor=stddev_factor)
     model.add_batch_norm()
-    model.add_relu()
+    model.add_lrelu()
 
     # Linearly map to real/fake and return average score
     # (softmax will be applied later)
@@ -379,22 +397,25 @@ def _generator_model(sess, features, labels, channels):
         model.add_upscale()
         
         model.add_batch_norm()
-        model.add_relu()
+        model.add_lrelu()
         model.add_conv2d_transpose(nunits, mapsize=mapsize, stride=1, stddev_factor=1.)
+        #model.add_dropout(0.9)
 
     # Finalization a la "all convolutional net"
     nunits = res_units[-1]
     model.add_conv2d(nunits, mapsize=mapsize, stride=1, stddev_factor=2.)
-    # Worse: model.add_batch_norm()
-    model.add_relu()
+    #model.add_batch_norm()
+    model.add_lrelu()
+    #model.add_dropout()
 
     model.add_conv2d(nunits, mapsize=1, stride=1, stddev_factor=2.)
-    # Worse: model.add_batch_norm()
-    model.add_relu()
-
-    # Last layer is sigmoid with no batch normalization
+    #model.add_batch_norm()
+    model.add_lrelu()
+    #model.add_dropout()
+    
+    # Last layer is tanh with no batch normalization
     model.add_conv2d(channels, mapsize=1, stride=1, stddev_factor=1.)
-    model.add_sigmoid()
+    model.add_tanh()
     
     new_vars  = tf.global_variables()
     gene_vars = list(set(new_vars) - set(old_vars))
@@ -440,29 +461,41 @@ def _downscale(images, K):
     arr[:,:,0,0] = 1.0/(K*K)
     arr[:,:,1,1] = 1.0/(K*K)
     arr[:,:,2,2] = 1.0/(K*K)
-    dowscale_weight = tf.constant(arr, dtype=tf.float32)
+    downscale_weight = tf.constant(arr, dtype=tf.float32)
     
-    downscaled = tf.nn.conv2d(images, dowscale_weight,
+    downscaled = tf.nn.conv2d(images, downscale_weight,
                               strides=[1, K, K, 1],
                               padding='SAME')
     return downscaled
 
-def create_generator_loss(disc_output, gene_output, features):
+def create_generator_loss(disc_output, gene_output, features, label):
     # I.e. did we fool the discriminator?
     cross_entropy = tf.nn.sigmoid_cross_entropy_with_logits(logits=disc_output, labels=tf.ones_like(disc_output))
     gene_ce_loss  = tf.reduce_mean(cross_entropy, name='gene_ce_loss')
 
     # I.e. does the result look like the feature?
     K = int(gene_output.get_shape()[1])//int(features.get_shape()[1])
-    assert K == 2 or K == 4 or K == 8    
-    downscaled = _downscale(gene_output, K)
-    
-    gene_l1_loss  = tf.reduce_mean(tf.abs(downscaled - features), name='gene_l1_loss')
+    assert K == 2 or K == 4 or K == 8
 
+    downscaled = _downscale(gene_output, K)
+    upscaled = tf.image.resize_nearest_neighbor(gene_output, (FLAGS.sample_size, FLAGS.sample_size))
+   
+    if FLAGS.comparison_image == 'original':
+        if FLAGS.use_L2_norm:	  
+            gene_l1_loss = tf.reduce_mean(tf.abs((upscaled - label)**2), name='gene_l2_loss')
+        else:
+            gene_l1_loss = tf.reduce_mean(tf.abs(upscaled - label), name='gene_l1_loss')
+    
+    else:
+        if FLAGS.use_L2_norm:	  
+            gene_l1_loss = tf.reduce_mean(tf.abs((upscaled - features)**2), name='gene_l2_loss')
+        else:
+            gene_l1_loss = tf.reduce_mean(tf.abs(upscaled - features), name='gene_l1_loss')
+    
     gene_loss     = tf.add((1.0 - FLAGS.gene_l1_factor) * gene_ce_loss,
                            FLAGS.gene_l1_factor * gene_l1_loss, name='gene_loss')
     
-    return gene_loss
+    return gene_loss, gene_l1_loss, gene_ce_loss
 
 def create_discriminator_loss(disc_real_output, disc_fake_output):
     # I.e. did we correctly identify the input as real or not?
@@ -472,19 +505,24 @@ def create_discriminator_loss(disc_real_output, disc_fake_output):
     cross_entropy_fake = tf.nn.sigmoid_cross_entropy_with_logits(logits=disc_fake_output, labels=tf.zeros_like(disc_fake_output))
     disc_fake_loss     = tf.reduce_mean(cross_entropy_fake, name='disc_fake_loss')
 
-    return disc_real_loss, disc_fake_loss
+    if FLAGS.swap_discriminator:
+        return disc_fake_loss, disc_real_loss
+    else:
+        return disc_real_loss, disc_fake_loss
 
 def create_optimizers(gene_loss, gene_var_list,
                       disc_loss, disc_var_list):    
-    # TBD: Does this global step variable need to be manually incremented? I think so.
+
     global_step    = tf.Variable(0, dtype=tf.int64,   trainable=False, name='global_step')
     learning_rate  = tf.placeholder(dtype=tf.float32, name='learning_rate')
     
     gene_opti = tf.train.AdamOptimizer(learning_rate=learning_rate,
-                                       beta1=FLAGS.learning_beta1,
+                                       beta1=FLAGS.learning_beta1_G,
+				       epsilon=FLAGS.epsilon,	
                                        name='gene_optimizer')
-    disc_opti = tf.train.AdamOptimizer(learning_rate=learning_rate,
-                                       beta1=FLAGS.learning_beta1,
+    disc_opti = tf.train.AdamOptimizer(learning_rate=FLAGS.disc_learning_rate_multiplier*learning_rate,
+                                       beta1=FLAGS.learning_beta1_D,
+				       epsilon=FLAGS.epsilon,
                                        name='disc_optimizer')
 
     gene_minimize = gene_opti.minimize(gene_loss, var_list=gene_var_list, name='gene_loss_minimize', global_step=global_step)
