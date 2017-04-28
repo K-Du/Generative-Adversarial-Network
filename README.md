@@ -7,7 +7,7 @@ For a general overview of GANs, see [this](Generative%20Adversarial%20Networks.p
 [This](https://github.com/K-Du/Generative-Adversarial-Network/blob/master/Image%20Enhancement%20Using%20Deep%20Learning.pdf) presentation gives a brief non-technical summary of this project.
 
 The GAN is based on David Garcia's [code](https://github.com/david-gpu/srez) for specifically enhancing celebrity photos.
-I added some extra features and enabled it to be used for any imageset (such as MNIST digits).
+I added extra features (see Updates section) and enabled it to be used for any imageset (such as MNIST digits).
 
 ### Updates
 - Now supports Tensorflow 1.0
