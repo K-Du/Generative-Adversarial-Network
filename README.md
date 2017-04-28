@@ -11,7 +11,7 @@ I added some extra features and enabled it to be used for any imageset (such as 
 
 ### Updates
 - Now supports Tensorflow 1.0
-- Added a separate testing/inference script
+- Added a separate script for testing/inference
 - Added tanh layer for last generator layer
 - Added Dropout layers to generator
 - Changed ReLU layers to leaky ReLU by default
