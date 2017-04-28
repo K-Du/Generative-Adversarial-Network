@@ -31,6 +31,7 @@ I added some extra features and enabled it to be used for any imageset (such as 
 ### Instructions
 - Download all the .py files. 
 - Create a folder called "dataset" and place all of the images in it. Images must be in jpeg format and square. 
+- (Optional) Run [image_verify.py](image_verify.py) to ensure image files are formatted correctly and not corrupted.  
 - From a console, run `python srez_main.py` to start training. Results will be automatically stored in a folder called "train", checkpoints will be automatically stored in a folder called "checkpoint".
 - By default, the batch size is set to 16 and training will stop after 20 minutes. These and many more settings (see srez_main.py) can be adjusted by appending flags when running the python script.  
 For example: `python srez_main.py --batch_size 32 --train_time 60`  
