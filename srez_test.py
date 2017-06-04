@@ -59,6 +59,5 @@ image = tf.concat([image[i,:,:,:] for i in range(FLAGS.max_samples)], 0)
 image = sess.run(image)
 
 result_filename = 'test_result.png'
-restul_filename = os.path.join(FLAGS.train_dir, result_filename)
 scipy.misc.toimage(image, cmin=0., cmax=1.).save(result_filename)
 print("    Saved test result")
