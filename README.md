@@ -19,7 +19,7 @@ I added extra features (see Updates section) and enabled it to be used for any i
 - Training output now displays both L1 generator loss and cross-entropy generator loss
 - Added option to adjust ratio of how heavily the discriminator loss depends on real loss and fake loss (default 1:1)
 - Added option to replace the L1 norm with L2 for calculating generator loss
-- Automatically pads or crops images smaller or larger than specified dimensions
+- Will automatically pad or resize images smaller than specified dimensions
 
 ### Dependencies
 - Python  
