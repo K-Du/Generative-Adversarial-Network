@@ -19,6 +19,7 @@ I added extra features (see Updates section) and enabled it to be used for any i
 - Training output now displays both L1 generator loss and cross-entropy generator loss
 - Added option to adjust ratio of how heavily the discriminator loss depends on real loss and fake loss (default 1:1)
 - Added option to replace the L1 norm with L2 for calculating generator loss
+- Automatically pads or crops images smaller or larger than specified dimensions
 
 ### Dependencies
 - Python  
@@ -39,7 +40,6 @@ For example: `python srez_main.py --batch_size 32 --train_time 60`
 ### Troubleshooting
 - When using this on CPU (not recommended), training time must be set higher or no results will be saved.
 - Depending on image size, [srez_input.py](srez_input.py) crop_size and image_size variables might need to be edited. Batch size should be lowered if memory becomes an issue with larger images.
-- Image dimensions should be the same for training and inference.
 - GANs are very difficult to train and it is common to see divergence where the discriminator loss goes to zero while the generator loss increases. Some excellent tips and tricks for training GANs can be found here: https://github.com/soumith/ganhacks
 
 
