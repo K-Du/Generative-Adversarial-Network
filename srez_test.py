@@ -7,7 +7,7 @@ import srez_model
 
 FLAGS = tf.app.flags.FLAGS
 
-tf.app.flags.DEFINE_integer('max_samples', 8,
+tf.app.flags.DEFINE_integer('max_samples', 1,
                             "Number of samples to test")
 
 # Load checkpoint folder
