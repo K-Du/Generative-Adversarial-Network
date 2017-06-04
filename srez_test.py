@@ -24,7 +24,6 @@ assert len(filenames) >= FLAGS.max_samples , "Not enough test images"
 # Setup async input queues
 features, labels = srez_input.setup_inputs(sess, filenames)
 
-
 # Create and initialize model
 [gene_minput, gene_moutput,
 gene_output, gene_var_list,
