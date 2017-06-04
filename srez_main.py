@@ -215,7 +215,7 @@ def _train():
 
     if FLAGS.specific_test:
 	train_filenames = all_filenames[:]
-        test_filenames = prepare_test_dirs()[:]
+    	test_filenames = prepare_test_dirs()[:]
     else:
 	train_filenames = all_filenames[:-FLAGS.test_vectors]
         test_filenames  = all_filenames[-FLAGS.test_vectors:]
