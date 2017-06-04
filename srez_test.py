@@ -19,7 +19,7 @@ sess, summary_writer = srez_main.setup_tensorflow()
 
 # Prepare directories
 filenames = srez_main.prepare_test_dirs()
-assert len(filenames) > FLAGS.max_samples , "Not enough test images"
+assert len(filenames) >= FLAGS.max_samples , "Not enough test images"
 
 # Setup async input queues
 features, labels = srez_input.setup_inputs(sess, filenames)
