@@ -38,6 +38,7 @@ saver.restore(sess, ckpt_filepath)
 
 # Run inference using pretrained model
 feature, label = sess.run([features, labels])
+
 feed_dict = {gene_minput: feature}
 gene_output = sess.run(gene_moutput, feed_dict=feed_dict)
 

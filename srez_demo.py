@@ -20,7 +20,7 @@ def demo1(sess):
 
     assert len(filenames) >= 1
 
-    fps        = 5
+    fps = 5
 
     # Create video file from PNGs
     print("Producing video file...")

@@ -14,7 +14,6 @@ def setup_inputs(sess, filenames, image_size=None, capacity_factor=3):
     channels = FLAGS.channels
     image = tf.image.decode_jpeg(value, channels=channels, name="dataset_image")
     image.set_shape([None, None, channels])
-
     # Crop and other random augmentations
     if FLAGS.reflect_images:
         image = tf.image.random_flip_left_right(image)
@@ -32,8 +31,13 @@ def setup_inputs(sess, filenames, image_size=None, capacity_factor=3):
         image = tf.reshape(image, (1, 28, 28, channels))    
         image = tf.image.resize_nearest_neighbor(image, (crop_size_plus, crop_size_plus))
         image = tf.reshape(image, (crop_size_plus, crop_size_plus, channels))
-    
+        
     else:
+        if FLAGS.pad_images:
+            image = tf.image.resize_image_with_crop_or_pad(image, image_size, image_size)
+        else:
+            image = tf.image.resize_images(image, [image_size, image_size], method=tf.image.ResizeMethod.BICUBIC)
+
         image = tf.image.crop_to_bounding_box(image, off_y, off_x, crop_size_plus, crop_size_plus)
 
     image = tf.random_crop(image, [crop_size, crop_size, channels])

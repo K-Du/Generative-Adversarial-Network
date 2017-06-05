@@ -74,6 +74,9 @@ tf.app.flags.DEFINE_bool('specific_test', True,
 tf.app.flags.DEFINE_integer('sample_size', 224,
                             "Image size in pixels.")
 
+tf.app.flags.DEFINE_bool('pad_images', False,
+                            "Pad images to the specified sample size instead of resizing them")
+
 tf.app.flags.DEFINE_integer('summary_period', 100,
                             "Number of batches between summary data dumps")
 
