@@ -479,21 +479,19 @@ def create_generator_loss(disc_output, gene_output, features, label):
 
     downscaled = _downscale(gene_output, K)
     upscaled = tf.image.resize_nearest_neighbor(gene_output, (FLAGS.sample_size, FLAGS.sample_size))
-   
+    
     if FLAGS.comparison_image == 'original':
         if FLAGS.use_L2_norm:
             gene_l1_loss = tf.reduce_mean(tf.abs((upscaled - label)**2), name='gene_l2_loss')
         else:
             gene_l1_loss = tf.reduce_mean(tf.abs(upscaled - label), name='gene_l1_loss')
-    
     else:
         if FLAGS.use_L2_norm:
             gene_l1_loss = tf.reduce_mean(tf.abs((upscaled - features)**2), name='gene_l2_loss')
         else:
             gene_l1_loss = tf.reduce_mean(tf.abs(upscaled - features), name='gene_l1_loss')
     
-            gene_loss = tf.add((1.0 - FLAGS.gene_l1_factor) * gene_ce_loss,
-                           FLAGS.gene_l1_factor * gene_l1_loss, name='gene_loss')
+    gene_loss = tf.add((1.0 - FLAGS.gene_l1_factor) * gene_ce_loss, FLAGS.gene_l1_factor * gene_l1_loss, name='gene_loss')
     
     return gene_loss, gene_l1_loss, gene_ce_loss
 
@@ -527,6 +525,6 @@ def create_optimizers(gene_loss, gene_var_list,
 
     gene_minimize = gene_opti.minimize(gene_loss, var_list=gene_var_list, name='gene_loss_minimize', global_step=global_step)
     
-    disc_minimize     = disc_opti.minimize(disc_loss, var_list=disc_var_list, name='disc_loss_minimize', global_step=global_step)
+    disc_minimize = disc_opti.minimize(disc_loss, var_list=disc_var_list, name='disc_loss_minimize', global_step=global_step)
     
     return (global_step, learning_rate, gene_minimize, disc_minimize)
